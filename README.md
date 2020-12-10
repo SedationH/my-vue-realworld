@@ -1,34 +1,8 @@
-# my-vue-realworld
+## 开发过程记录📝
 
-## Project setup
-```
-yarn install
-```
+day1
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+配置简单的route 和 静态文件模版
 
-### Compiles and minifies for production
-```
-yarn build
-```
+[静态文件模版参考](https://github.com/gothinkster/realworld-starter-kit/blob/master/FRONTEND_INSTRUCTIONS.md)
 
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

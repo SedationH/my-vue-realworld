@@ -57,7 +57,24 @@
             <i class="ion-gear-a"></i>&nbsp;Settings
           </router-link>
         </li>
+        <!-- 可见path不吻合就会active-class -->
+        <li class="nav-item">
+          <router-link
+            class="nav-link"
+            active-class="active"
+            exact
+            :to="{ name: 'profile' }"
+          >
+            <i class="ion-gear-a"></i>&nbsp;sedationh
+          </router-link>
+        </li>
       </ul>
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  name: 'RwvHeader'
+}
+</script>

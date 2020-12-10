@@ -26,9 +26,20 @@ const routes = [
     component: () => import('@/views/Settings')
   },
   {
+    name: 'article',
+    path: '/articles/:slug',
+    component: () => import('@/views/Article'),
+    props: true
+  },
+  {
     name: 'article-edit',
     path: '/editor',
     component: () => import('@/views/ArticleEdit')
+  },
+  {
+    path: '/@:username',
+    name: 'profile',
+    component: () => import('@/views/Profile')
   }
 ]
 
