@@ -20,10 +20,7 @@ export default {
     }
   },
   actions: {
-    loginUser: async function(
-      context,
-      { email, password }
-    ) {
+    async loginUser(context, { email, password }) {
       clearToken()
       try {
         const response = await api.post('/users/login', {

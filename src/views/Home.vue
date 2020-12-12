@@ -12,20 +12,28 @@
         <div class="col-md-9">
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
-              <li class="nav-item">
-                <a class="nav-link disabled" href=""
-                  >Your Feed</a
+              <li v-if="username" class="nav-item">
+                <a
+                  @click="setFeed('user')"
+                  class="nav-link disabled"
+                  href="#"
                 >
+                  Your Feed
+                </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href=""
-                  >Global Feed</a
+                <a
+                  @click="setFeed('global')"
+                  class="nav-link active"
+                  href="#"
                 >
+                  Global Feed
+                </a>
               </li>
             </ul>
           </div>
           <VArticlePreview
-            v-for="article in articles"
+            v-for="article in globalArticles"
             :key="article.slug"
             :article="article"
           />
@@ -76,42 +84,23 @@ export default {
     VArticlePreview
   },
   data: () => ({
-    articles: [
-      {
-        slug: 'how-to-train-your-dragon',
-        title: 'How to train your dragon',
-        description: 'Ever wonder how?',
-        body: 'It takes a Jacobian',
-        tagList: ['dragons', 'training'],
-        createdAt: '2016-02-18T03:22:56.637Z',
-        updatedAt: '2016-02-18T03:48:35.824Z',
-        favorited: false,
-        favoritesCount: 0,
-        author: {
-          username: 'jake',
-          bio: 'I work at statefarm',
-          image: 'https://i.stack.imgur.com/xHWG8.jpg',
-          following: false
-        }
-      },
-      {
-        slug: 'how-to-train-your-dragon-2',
-        title: 'How to train your dragon 2',
-        description: 'So toothless',
-        body: 'It a dragon',
-        tagList: ['dragons', 'training'],
-        createdAt: '2016-02-18T03:22:56.637Z',
-        updatedAt: '2016-02-18T03:48:35.824Z',
-        favorited: false,
-        favoritesCount: 0,
-        author: {
-          username: 'jake',
-          bio: 'I work at statefarm',
-          image: 'https://i.stack.imgur.com/xHWG8.jpg',
-          following: false
-        }
+    activeFeed: 'global'
+  }),
+  computed: {
+    username() {
+      return this.$store.getters['users/username']
+    },
+    globalArticles() {
+      return this.$store.state.articles.feed || []
+    }
+  },
+  methods: {
+    setFeed(feedType) {
+      if (feedType === 'global') {
+        this.activeFeed = 'global'
+        this.$store.dispatch('articles/getGlobalFeed')
       }
-    ]
-  })
+    }
+  }
 }
 </script>
