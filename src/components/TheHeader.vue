@@ -18,7 +18,7 @@
             Home
           </router-link>
         </li>
-        <li class="nav-item">
+        <li v-if="!username" class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
@@ -28,7 +28,7 @@
             <i class="ion-compose"></i>Sign in
           </router-link>
         </li>
-        <li class="nav-item">
+        <li v-if="!username" class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
@@ -38,7 +38,8 @@
             <i class="ion-compose"></i>Sign up
           </router-link>
         </li>
-        <li class="nav-item">
+
+        <li v-if="username" class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
@@ -47,7 +48,7 @@
             <i class="ion-compose"></i>&nbsp;New Article
           </router-link>
         </li>
-        <li class="nav-item">
+        <li v-if="username" class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
@@ -58,14 +59,14 @@
           </router-link>
         </li>
         <!-- 可见path不吻合就会active-class -->
-        <li class="nav-item">
+        <li v-if="username" class="nav-item">
           <router-link
             class="nav-link"
             active-class="active"
             exact
-            :to="{ name: 'profile' }"
+            :to="`@${username}`"
           >
-            <i class="ion-gear-a"></i>&nbsp;sedationh
+            <i class="ion-gear-a"></i>&nbsp;{{ username }}
           </router-link>
         </li>
       </ul>
@@ -75,6 +76,11 @@
 
 <script>
 export default {
-  name: 'RwvHeader'
+  name: 'RwvHeader',
+  computed: {
+    username() {
+      return this.$store.getters['users/username']
+    }
+  }
 }
 </script>
